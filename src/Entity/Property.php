@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Cocur\Slugify\Slugify;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
  */
@@ -95,6 +95,11 @@ class Property
     public function getTitle(): ?string
     {
         return $this->title;
+    }
+    //mettre ne sleug le tiile d'un bien
+    public function getSlug()
+    {
+        return (new Slugify())->slugify($this->title);
     }
 
     public function setTitle(string $title): self

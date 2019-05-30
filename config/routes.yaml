@@ -8,6 +8,10 @@ home:
 property.index:
   path: /biens
   controller: App\Controller\PropertyController::index
+  
+property.show:
+  path: /{slug}/{id}/show
+  controller: App\Controller\PropertyController::show
 
 
     
