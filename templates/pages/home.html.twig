@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+
+{% block title 'Home' %}
+
+{% block body %}
+
+<div class="jumbotron text-center">
+<h1> Agence immobiliere</h1> 
+<p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500,
+ quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte.</p> 
+</div>
+<div class="container">
+    <h2>les derniers biens </h1>
+    <div class="row flex">
+    {% for property in properties %}
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href=""> {{ property.title }} </a>
+                    </h5>
+                    <p class="card-text"> {{ property.description }} </a>
+                    <p class="card-text"> {{ property.city }} {{ property.adress }}</a>
+                    <p class="text-primary"> {{ property.price | number_format(0, '', ' ') }} Fcfa </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock %}
