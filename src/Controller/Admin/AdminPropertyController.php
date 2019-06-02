@@ -39,6 +39,7 @@ class AdminPropertyController extends AbstractController
         {
             $this->em->persist($property);
             $this->em->flush();
+            $this->addFlash('success', 'Créer avec succee');
             return $this->redirectToRoute('admin.property.index');
         }
 
@@ -59,6 +60,7 @@ class AdminPropertyController extends AbstractController
         if( $form->isSubmitted() && $form->isValid() )
         {
             $this->em->flush();
+            $this->addFlash('success', 'Editer avec succee');
             return $this->redirectToRoute('admin.property.index');
         }
         
@@ -66,6 +68,21 @@ class AdminPropertyController extends AbstractController
             'property' => $property,
             'form' => $form->createView() 
         ]);
+    }
+/* verification de la validite du token avec l'id 
+    et le token grace request
+*/
+    public function delete(Property $property, Request $request)
+    {
+        if ($this->isCsrfTokenValid('delete' . $property->getId(), $request->get('_token') ))
+        {
+            $this->em->remove($property);
+            $this->em->flush();
+            $this->addFlash('Success', 'Supprimer avec succee');
+        }
+
+        return $this->redirectToRoute('admin.property.index');
+
     }
 
 }
