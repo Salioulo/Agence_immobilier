@@ -12,6 +12,30 @@ property.index:
 property.show:
   path: /{slug}/{id}/show
   controller: App\Controller\PropertyController::show
+  
+admin.property.index:
+  path: /admin
+  controller: App\Controller\Admin\AdminPropertyController::index
+
+admin.property.new:
+    path: /admin/new
+    controller: App\Controller\Admin\AdminPropertyController::new
+    methods: GET|POST
+    defaults:
+      template: 'admin\property\new.html.twig'
+
+admin.property.edit:
+    path: /admin/{id}/edit
+    controller: App\Controller\Admin\AdminPropertyController::edit
+    methods: GET|POST
+    defaults:
+      template: 'admin\property\edit.html.twig'
+
+admin.property.delete:
+    path: /admin/{id}/delete
+    controller: App\Controller\Admin\AdminPropertyController::delete
+    methods: DELETE
+
 
 
     

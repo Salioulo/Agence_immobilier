@@ -8,18 +8,18 @@ use App\Entity\Property;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
-
-
 class PropertyController extends AbstractController
 {
   
+    //affichage des biens visible non vendu function repository
     public function index(): Response
     { 
         $repos = $this->getDoctrine()->getRepository(Property::class);
         $property = $repos->findAllVisible();
 
         return $this->render('property/index.html.twig',[
-            'current_menu' => 'properties'
+            'current_menu' => 'properties',
+            'property' => $property
         ]);
     }
 
@@ -30,7 +30,7 @@ class PropertyController extends AbstractController
     {
         if ($property->getSlug() !== $slug)
         {
-            $this->redirectToRoute('property.show',[
+            return $this->redirectToRoute('property.show',[
                 'id' => $property->getId(),
                 'slug'=> $property->getSlug()
             ],301);

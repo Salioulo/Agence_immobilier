@@ -96,7 +96,7 @@ class Property
     {
         return $this->title;
     }
-    //mettre ne sleug le tiile d'un bien
+    //mettre en sleug le tiile d'un bien
     public function getSlug()
     {
         return (new Slugify())->slugify($this->title);
