@@ -1,21 +1,55 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
-home:
-  path: /
-  controller: App\Controller\HomeController::index
+login:
+  path: /login
+  controller: App\Controller\SecurityController::login
+  methods: GET|POST
+  defaults:
+    template: admin\user\index.html.twig'
 
-property.index:
-  path: /biens
-  controller: App\Controller\PropertyController::index
+logout:
+  path: /logout
   
-property.show:
-  path: /{slug}/{id}/show
-  controller: App\Controller\PropertyController::show
-  
+
 admin.property.index:
   path: /admin
-  controller: App\Controller\Admin\AdminPropertyController::index
+  controller: App\Controller\Admin\AdminPropertyController::
+    
+admin.user.index:
+    path: /admin/user/index
+    controller: App\Controller\Admin\UserController::index
+    methods: GET
+    defaults:
+      template: 'admin\user\index.html.twig'
+
+admin.user.new:
+    path: /admin/user/new
+    controller: App\Controller\Admin\UserController::new
+    methods: GET|POST
+    defaults:
+      template: 'admin\user\new.html.twig'
+
+admin.user.show:
+    path: /admin/user/{id}/show
+    controller: App\Controller\Admin\UserController::show
+    methods: GET
+    defaults:
+      template: 'admin\user\show.html.twig'
+
+admin.user.edit:
+    path: /admin/user/{id}/edit
+    controller: App\Controller\Admin\UserController::edit
+    methods: GET|POST
+    defaults:
+      template: 'admin\user\edit.html.twig'
+
+admin.user.delete:
+    path: /admin/user/{id}/delete
+    controller: App\Controller\Admin\UserController::delete
+    methods: DELETE
+    defaults:
+      template: 'admin\user\_delete.html.twig'
 
 admin.property.new:
     path: /admin/new
@@ -35,6 +69,20 @@ admin.property.delete:
     path: /admin/{id}/delete
     controller: App\Controller\Admin\AdminPropertyController::delete
     methods: DELETE
+
+home:
+  path: /
+  controller: App\Controller\HomeController::index
+
+property.index:
+  path: /biens
+  controller: App\Controller\PropertyController::index
+  
+property.show:
+  path: /{slug}/{id}/show
+  controller: App\Controller\PropertyController::show
+  
+
 
 
 
