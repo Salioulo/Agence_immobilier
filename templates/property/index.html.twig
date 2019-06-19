@@ -3,13 +3,40 @@
 {% block title 'Nos biens' %}
 
 {% block body %}
+<div class="jumbotron">
+    <div class="container">
+     {% if confirme == 1 %}
+        <div class="alert alert-danger" role="alert">
+            <strong>Alerte! </strong>
+            Pas de biens disponibles pour ces valeurS !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+     {% endif %}
+        {{ form_start(form) }}
+            <div class="form-row">
+                <div class="col">
+                    {{ form_row(form.minSurface) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.maxPrice) }}
+                </div>
+                <div class="col">
+                     <button class="btn btn-primary"> Rechercher </button>
+                </div>
+            </div>
+        
+        {{ form_end(form) }}
+    </div>
+</div>
 
 <div class="container mt-4">
 <h1> Voir tous nos biens</h1> 
 <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. </p> 
 </div>
 <div class="container">
-    
+
     <div class="row flex">
     {% for properti in properties %}
         <div class="col-4">
@@ -18,7 +45,7 @@
                     <h5 class="card-title">
                         <a href="{{ path('property.show', {id: properti.id, slug: properti.slug} ) }}"> {{ properti.title }} </a>
                     </h5>
-                    <p class="card-text"> {{ properti.city }} {{ properti.adress }}</a>
+                    <p class="card-text"> {{ properti.surface }} m2 {{ properti.city }} {{ properti.adress }}</a>
                     <p class="text-primary" style="font-weight: bold; font-size: 2rem;"> {{ properti.price | number_format(0, '', ' ') }} Fcfa </a>
                 </div>
             </div>
