@@ -6,15 +6,17 @@ login:
   controller: App\Controller\SecurityController::login
   methods: GET|POST
   defaults:
-    template: admin\user\index.html.twig'
+    template: 'admin\user\index.html.twig'
 
 logout:
   path: /logout
   
-
 admin.property.index:
   path: /admin
-  controller: App\Controller\Admin\AdminPropertyController::
+  controller: App\Controller\Admin\AdminPropertyController::index
+  methods: GET|POST
+  defaults:
+    template: 'admin/property/index.html.twig'
     
 admin.user.index:
     path: /admin/user/index
@@ -69,6 +71,41 @@ admin.property.delete:
     path: /admin/{id}/delete
     controller: App\Controller\Admin\AdminPropertyController::delete
     methods: DELETE
+
+admin.option.new:
+    path: /admin/option/new
+    controller: App\Controller\Admin\OptionController::new
+    methods: GET|POST
+    defaults:
+      template: 'admin\option\new.html.twig'
+
+admin.option.index:
+    path: /admin/option/index
+    controller: App\Controller\Admin\OptionController::index
+    methods: GET
+    defaults:
+      template: 'admin\option\index.html.twig'
+
+admin.option.edit:
+    path: /admin/option/{id}/edit
+    controller: App\Controller\Admin\OptionController::edit
+    methods: GET|POST
+    defaults:
+      template: 'admin\option\edit.html.twig'
+
+admin.option.show:
+    path: /admin/option/{id}/show
+    controller: App\Controller\Admin\OptionController::show
+    methods: GET
+    defaults:
+      template: 'admin\option\show.html.twig'
+
+admin.option.delete:
+    path: /admin/option/{id}/delete
+    controller: App\Controller\Admin\OptionController::delete
+    methods: DELETE
+    defaults:
+      template: 'admin\option\_delete.html.twig'
 
 home:
   path: /

@@ -12,3 +12,17 @@
 </div>
 
 {% endblock %}
+
+{# ajout du styles css cdnjs select2 pour l'affichage des options #}
+{% block stylesheets %}
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css">
+{% endblock %}
+{# ajout JS du styles css cdnjs select2 pour l'affichage des options #}
+{% block javascripts %}
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+ {# on applique select2 dans tous les element qui on select #}
+ <script>
+    $('select').select2();
+ </script>
+{% endblock %}

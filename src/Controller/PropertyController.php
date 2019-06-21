@@ -37,9 +37,11 @@ class PropertyController extends AbstractController
         //$repos = $this->getDoctrine()->getRepository(Property::class);
         //$property = $this->$repos->findAllVisibleQuery();
         $search = new PropertySearch();
+        //recupere des donnees dans le form de la recherche
         $form = $this->createForm(PropertySearchType::class, $search);
         $form->handleRequest($request);
-        
+
+        //affichage des donnees par page
         $properties = $paginator->paginate(
             $this->repository->findAllVisibleQuery($search),
             $request->query->getInt('page', 1),

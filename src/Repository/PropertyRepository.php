@@ -45,6 +45,22 @@ class PropertyRepository extends ServiceEntityRepository
                 ->setParameter('minsurface', $search->getMinSurface());
             }
 
+         // Recherche par rapport aux options 
+         if ($search->getOptions()->count() > 0)  //si on selection un ou plusieurs elements
+         {
+            // on parcours les elements et voir s'il est membre des options selectionnees
+            $op = 0;
+            foreach($search->getOptions() as $option)
+            {
+                $op++;
+                $query = $query
+        // pour eviter d'ecraser a chaque fois loption precedente, on ajoute la cle $op ds la condition 
+        
+                ->andwhere(":option$op MEMBER OF p.options" ) // si option est de options
+                ->setParameter("option$op", $option); //on definit que les parametres de options viennes de $option
+            }
+         }
+         
         // on return la requete en transformant la resultat en query
         return $query->getQuery()->getResult();
         ;
